@@ -1,0 +1,36 @@
+{
+  "name": "velvet-hair-company",
+  "version": "1.0.0",
+  "description": "Full-stack MERN e-commerce platform for Velvet Hair Company - Premium Wigs & Hair Extensions",
+  "main": "backend/server.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd backend && npm run dev",
+    "client": "cd frontend && npm start",
+    "build": "cd frontend && npm run build",
+    "install-server": "cd backend && npm install",
+    "install-client": "cd frontend && npm install",
+    "install-all": "npm run install-server && npm run install-client",
+    "heroku-postbuild": "npm run install-all && npm run build"
+  },
+  "keywords": [
+    "velvet-hair",
+    "ecommerce",
+    "wigs",
+    "hair-extensions",
+    "mern-stack",
+    "mongodb",
+    "express",
+    "react",
+    "nodejs"
+  ],
+  "author": "Velvet Hair Company",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  }
+}
