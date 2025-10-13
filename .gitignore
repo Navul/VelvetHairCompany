@@ -143,3 +143,4 @@ $RECYCLE.BIN/
 # Build artifacts
 dist/
 build/
+.env
