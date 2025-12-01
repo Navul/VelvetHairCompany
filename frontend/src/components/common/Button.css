@@ -1,0 +1,258 @@
+/* Premium Button Styles - Velvet Hair Wigs */
+
+.velvet-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-family: var(--font-body);
+  font-weight: var(--font-semibold);
+  text-align: center;
+  white-space: nowrap;
+  border: none;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--transition-velvet);
+  overflow: hidden;
+  z-index: 1;
+}
+
+.velvet-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0)
+  );
+  opacity: 0;
+  transition: opacity var(--transition-velvet);
+  z-index: -1;
+}
+
+.velvet-btn:hover::before {
+  opacity: 1;
+}
+
+/* ========== SIZES ========== */
+
+.velvet-btn--sm {
+  height: var(--btn-height-sm);
+  padding: 0 var(--space-4);
+  font-size: var(--text-sm);
+}
+
+.velvet-btn--md {
+  height: var(--btn-height-md);
+  padding: 0 var(--space-6);
+  font-size: var(--text-base);
+}
+
+.velvet-btn--lg {
+  height: var(--btn-height-lg);
+  padding: 0 var(--space-8);
+  font-size: var(--text-lg);
+}
+
+.velvet-btn--xl {
+  height: var(--btn-height-xl);
+  padding: 0 var(--space-10);
+  font-size: var(--text-xl);
+}
+
+/* ========== VARIANTS ========== */
+
+/* Primary - Velvet Plum */
+.velvet-btn--primary {
+  background: linear-gradient(135deg, var(--color-velvet-plum), var(--color-velvet-plum-dark));
+  color: var(--color-white);
+  box-shadow: var(--shadow-velvet);
+}
+
+.velvet-btn--primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--color-velvet-plum-dark), var(--color-velvet-plum));
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-2px);
+}
+
+.velvet-btn--primary:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: var(--shadow-md);
+}
+
+/* Secondary - Velvet Rose */
+.velvet-btn--secondary {
+  background: linear-gradient(135deg, var(--color-velvet-rose), var(--color-velvet-rose-light));
+  color: var(--color-white);
+  box-shadow: var(--shadow-md);
+}
+
+.velvet-btn--secondary:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--color-velvet-rose-light), var(--color-velvet-rose));
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+/* Outline */
+.velvet-btn--outline {
+  background: transparent;
+  color: var(--color-velvet-plum);
+  border: 2px solid var(--color-velvet-plum);
+  box-shadow: none;
+}
+
+.velvet-btn--outline:hover:not(:disabled) {
+  background: var(--color-velvet-plum);
+  color: var(--color-white);
+  border-color: var(--color-velvet-plum);
+  box-shadow: var(--shadow-velvet);
+}
+
+/* Ghost */
+.velvet-btn--ghost {
+  background: transparent;
+  color: var(--color-velvet-plum);
+  box-shadow: none;
+}
+
+.velvet-btn--ghost:hover:not(:disabled) {
+  background: var(--color-soft-blush-light);
+  color: var(--color-velvet-plum-dark);
+}
+
+/* Gold Accent */
+.velvet-btn--gold {
+  background: linear-gradient(135deg, var(--color-warm-gold), #C5AF8E);
+  color: var(--color-velvet-plum);
+  box-shadow: 0 4px 20px rgba(217, 197, 163, 0.3);
+}
+
+.velvet-btn--gold:hover:not(:disabled) {
+  background: linear-gradient(135deg, #C5AF8E, var(--color-warm-gold));
+  box-shadow: 0 6px 30px rgba(217, 197, 163, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Link Style */
+.velvet-btn--link {
+  background: transparent;
+  color: var(--color-velvet-rose);
+  box-shadow: none;
+  padding: 0;
+  height: auto;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.velvet-btn--link:hover:not(:disabled) {
+  color: var(--color-velvet-plum);
+  text-decoration: none;
+}
+
+/* ========== STATES ========== */
+
+.velvet-btn--disabled,
+.velvet-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.velvet-btn--loading {
+  cursor: wait;
+  pointer-events: none;
+}
+
+.velvet-btn--loading .velvet-btn__text {
+  opacity: 0;
+}
+
+/* ========== FULL WIDTH ========== */
+
+.velvet-btn--full {
+  width: 100%;
+}
+
+/* ========== ICONS ========== */
+
+.velvet-btn__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25em;
+  height: 1.25em;
+  transition: transform var(--transition-base);
+}
+
+.velvet-btn__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.velvet-btn:hover .velvet-btn__icon--right {
+  transform: translateX(3px);
+}
+
+.velvet-btn:hover .velvet-btn__icon--left {
+  transform: translateX(-3px);
+}
+
+/* ========== LOADING SPINNER ========== */
+
+.velvet-btn__spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.velvet-btn__spinner-icon {
+  width: 1.25em;
+  height: 1.25em;
+  animation: spin 1s linear infinite;
+}
+
+.velvet-btn__spinner-circle {
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-dasharray: 50;
+  stroke-dashoffset: 25;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ========== FOCUS STATES ========== */
+
+.velvet-btn:focus-visible {
+  outline: 3px solid var(--color-velvet-rose);
+  outline-offset: 2px;
+}
+
+/* ========== RESPONSIVE ========== */
+
+@media (max-width: 767px) {
+  .velvet-btn--lg {
+    height: var(--btn-height-md);
+    padding: 0 var(--space-6);
+    font-size: var(--text-base);
+  }
+
+  .velvet-btn--xl {
+    height: var(--btn-height-lg);
+    padding: 0 var(--space-8);
+    font-size: var(--text-lg);
+  }
+}

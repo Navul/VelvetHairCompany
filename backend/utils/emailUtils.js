@@ -33,7 +33,7 @@ const sendEmail = async (options) => {
 const sendWelcomeEmail = async (user) => {
   const html = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-      <h1 style="color: #8B5CF6;">Welcome to Velvet Hair Company!</h1>
+      <h1 style="color: #8B5CF6;">Welcome to Velvet Hair Wigs!</h1>
       <p>Hi ${user.firstName},</p>
       <p>Thank you for joining Velvet Hair Company! We're excited to have you as part of our community.</p>
       <p>Discover our premium collection of wigs and hair extensions designed to make you look and feel your best.</p>

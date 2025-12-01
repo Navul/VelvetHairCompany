@@ -1,7 +1,7 @@
 {
   "name": "velvet-hair-frontend",
   "version": "1.0.0",
-  "description": "Frontend for Velvet Hair Company - Premium Wig E-commerce Platform",
+  "description": "Frontend for Velvet Hair Wigs - Premium Wig E-commerce Platform",
   "private": true,
   "dependencies": {
     "react": "^18.2.0",
