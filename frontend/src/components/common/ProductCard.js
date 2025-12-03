@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { addToCart } from '../../store/slices/cartSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart, showLoginModal } from '../../store/slices/cartSlice';
 import Button from './Button';
+import { ColorSwatchGroup } from './ColorSwatch';
 import './ProductCard.css';
 
 /**
@@ -16,8 +17,11 @@ const ProductCard = ({
 }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [selectedColor, setSelectedColor] = useState(null);
+  const [showColorError, setShowColorError] = useState(false);
 
   const {
     _id,
@@ -30,8 +34,16 @@ const ProductCard = ({
     reviewCount = 0,
     inStock = true,
     badge = null,
-    stock = 100 // Default stock if not provided
+    stock = 100, // Default stock if not provided
+    colors = [] // Hair color options
   } = product;
+
+  // Auto-select color if only one is available
+  React.useEffect(() => {
+    if (colors.length === 1 && colors[0].isAvailable) {
+      setSelectedColor(colors[0]);
+    }
+  }, [colors]);
 
   const discount = originalPrice
     ? Math.round(((originalPrice - price) / originalPrice) * 100)
@@ -39,6 +51,19 @@ const ProductCard = ({
 
   const handleAddToCart = (e) => {
     e.stopPropagation();
+    
+    // Check if user is logged in
+    if (!isAuthenticated) {
+      dispatch(showLoginModal());
+      return;
+    }
+
+    // Check if color is selected (if product has multiple colors)
+    if (colors.length > 1 && !selectedColor) {
+      setShowColorError(true);
+      setTimeout(() => setShowColorError(false), 3000);
+      return;
+    }
     
     // Create a properly structured product object for the cart
     const productForCart = {
@@ -51,7 +76,20 @@ const ProductCard = ({
       inStock
     };
     
-    dispatch(addToCart({ product: productForCart, quantity: 1 }));
+    dispatch(addToCart({ 
+      product: productForCart, 
+      quantity: 1,
+      userId: user?._id,
+      selectedColor: selectedColor // Include selected color
+    }));
+
+    // Reset color error if shown
+    setShowColorError(false);
+  };
+
+  const handleColorSelect = (color) => {
+    setSelectedColor(color);
+    setShowColorError(false);
   };
 
   const handleWishlist = (e) => {
@@ -200,6 +238,24 @@ const ProductCard = ({
               ))}
             </div>
             <span className="product-card__review-count">({reviewCount})</span>
+          </div>
+        )}
+
+        {/* Color Selection */}
+        {colors.length > 0 && (
+          <div className="product-card__colors" onClick={(e) => e.stopPropagation()}>
+            <ColorSwatchGroup
+              colors={colors}
+              selectedColor={selectedColor}
+              onColorSelect={handleColorSelect}
+              showLabel={false}
+              size={18}
+            />
+            {showColorError && (
+              <p className="text-xs text-red-600 mt-1 animate-fadeIn">
+                Please select a color
+              </p>
+            )}
           </div>
         )}
 

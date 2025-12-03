@@ -34,14 +34,18 @@ import AdminRoute from './components/common/AdminRoute';
 
 // Redux Actions
 import { loadUser } from './store/slices/authSlice';
-import { getCartItems } from './store/slices/cartSlice';
+import { getCartItems, setUserId } from './store/slices/cartSlice';
 
 // Utils
 import { setAuthToken } from './utils/auth';
 
+// Modals and Toasts
+import LoginModal from './components/common/LoginModal';
+import CartToast from './components/common/CartToast';
+
 function App() {
   const dispatch = useDispatch();
-  const { isAuthenticated, loading } = useSelector((state) => state.auth);
+  const { isAuthenticated, loading, user } = useSelector((state) => state.auth);
 
   useEffect(() => {
     // Set auth token if it exists in localStorage
@@ -54,10 +58,11 @@ function App() {
 
   useEffect(() => {
     // Load cart items from localStorage when app starts
-    if (isAuthenticated) {
+    if (isAuthenticated && user) {
+      dispatch(setUserId(user._id));
       dispatch(getCartItems());
     }
-  }, [dispatch, isAuthenticated]);
+  }, [dispatch, isAuthenticated, user]);
 
   if (loading) {
     return (
@@ -165,6 +170,10 @@ function App() {
       </main>
 
       <Footer />
+      
+      {/* Global Modals and Notifications */}
+      <LoginModal />
+      <CartToast />
     </div>
   );
 }

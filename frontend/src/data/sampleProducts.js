@@ -42,6 +42,13 @@ export const sampleProducts = [
       'Adjustable straps',
       'Can be heat styled up to 180°C',
       'Minimal shedding'
+    ],
+    colors: [
+      { name: 'Natural Black', code: '#1A1A1A', isAvailable: true },
+      { name: 'Dark Brown', code: '#3D2817', isAvailable: true },
+      { name: 'Medium Brown', code: '#5C4033', isAvailable: true },
+      { name: 'Honey Blonde', code: '#D8A641', isAvailable: true },
+      { name: 'Ash Blonde', code: '#B8A68C', isAvailable: false }
     ]
   },
   {
@@ -79,6 +86,12 @@ export const sampleProducts = [
       'Natural bouncy waves',
       'Minimal tangling',
       'Long-lasting curl pattern'
+    ],
+    colors: [
+      { name: 'Natural Black', code: '#1A1A1A', isAvailable: true },
+      { name: 'Dark Brown', code: '#3D2817', isAvailable: true },
+      { name: 'Chestnut Brown', code: '#8B5A2B', isAvailable: true },
+      { name: 'Auburn', code: '#A0522D', isAvailable: false }
     ]
   },
   {
@@ -116,6 +129,11 @@ export const sampleProducts = [
       'Luxurious deep wave pattern',
       'Breathable Swiss lace',
       'Professional salon quality'
+    ],
+    colors: [
+      { name: 'Natural Black', code: '#1A1A1A', isAvailable: true },
+      { name: 'Dark Brown', code: '#3D2817', isAvailable: true },
+      { name: 'Medium Brown', code: '#5C4033', isAvailable: true }
     ]
   },
   {
@@ -153,6 +171,13 @@ export const sampleProducts = [
       'Natural loose wave pattern',
       'Pre-plucked and bleached',
       'Soft and manageable'
+    ],
+    colors: [
+      { name: 'Natural Black', code: '#1A1A1A', isAvailable: true },
+      { name: 'Dark Brown', code: '#3D2817', isAvailable: true },
+      { name: 'Medium Brown', code: '#5C4033', isAvailable: true },
+      { name: 'Light Brown', code: '#8B7355', isAvailable: true },
+      { name: 'Honey Blonde', code: '#D8A641', isAvailable: true }
     ]
   },
   {
@@ -190,6 +215,11 @@ export const sampleProducts = [
       'Natural kinky straight texture',
       'Easy to install',
       'Minimal leave out needed'
+    ],
+    colors: [
+      { name: 'Natural Black', code: '#1A1A1A', isAvailable: true },
+      { name: 'Dark Brown', code: '#3D2817', isAvailable: true },
+      { name: 'Medium Brown', code: '#5C4033', isAvailable: false }
     ]
   },
   {
@@ -227,6 +257,12 @@ export const sampleProducts = [
       'Natural bounce and movement',
       '4x4 lace closure',
       'Free part, middle part, or side part'
+    ],
+    colors: [
+      { name: 'Natural Black', code: '#1A1A1A', isAvailable: true },
+      { name: 'Dark Brown', code: '#3D2817', isAvailable: true },
+      { name: 'Chestnut Brown', code: '#8B5A2B', isAvailable: true },
+      { name: 'Honey Blonde', code: '#D8A641', isAvailable: true }
     ]
   },
   {
@@ -264,6 +300,9 @@ export const sampleProducts = [
       'Honey blonde ends',
       'Body wave texture',
       'High density for full volume'
+    ],
+    colors: [
+      { name: 'Ombre Honey Blonde', code: '#D8A641', isAvailable: true }
     ]
   },
   {
@@ -301,6 +340,12 @@ export const sampleProducts = [
       'Natural curl pattern',
       'Lightweight and breathable',
       'Perfect for summer'
+    ],
+    colors: [
+      { name: 'Natural Black', code: '#1A1A1A', isAvailable: true },
+      { name: 'Dark Brown', code: '#3D2817', isAvailable: true },
+      { name: 'Auburn', code: '#A0522D', isAvailable: true },
+      { name: 'Burgundy', code: '#7C2529', isAvailable: false }
     ]
   },
   {
@@ -338,6 +383,9 @@ export const sampleProducts = [
       'Fade-resistant dye',
       'Silky smooth texture',
       'Pre-plucked hairline'
+    ],
+    colors: [
+      { name: 'Burgundy Wine', code: '#7C2529', isAvailable: true }
     ]
   },
   {
@@ -375,6 +423,10 @@ export const sampleProducts = [
       'High density for fullness',
       'Perfect shrinkage ratio',
       'Can be styled naturally'
+    ],
+    colors: [
+      { name: 'Natural Black', code: '#1A1A1A', isAvailable: true },
+      { name: 'Dark Brown', code: '#3D2817', isAvailable: true }
     ]
   },
   {
@@ -412,6 +464,14 @@ export const sampleProducts = [
       'Sleek and professional',
       'Easy to maintain',
       'Versatile styling options'
+    ],
+    colors: [
+      { name: 'Natural Black', code: '#1A1A1A', isAvailable: true },
+      { name: 'Dark Brown', code: '#3D2817', isAvailable: true },
+      { name: 'Medium Brown', code: '#5C4033', isAvailable: true },
+      { name: 'Chestnut Brown', code: '#8B5A2B', isAvailable: true },
+      { name: 'Honey Blonde', code: '#D8A641', isAvailable: true },
+      { name: 'Platinum Blonde', code: '#E8E4D0', isAvailable: false }
     ]
   },
   {
@@ -449,6 +509,10 @@ export const sampleProducts = [
       'Dimensional color',
       'Body wave texture',
       'Sun-kissed look'
+    ],
+    colors: [
+      { name: 'Honey Blonde Highlight', code: '#D8A641', isAvailable: true },
+      { name: 'Caramel Highlight', code: '#C68E59', isAvailable: true }
     ]
   },
   {
@@ -486,6 +550,12 @@ export const sampleProducts = [
       'Romantic wave pattern',
       'Natural bounce',
       'Versatile styling'
+    ],
+    colors: [
+      { name: 'Natural Black', code: '#1A1A1A', isAvailable: true },
+      { name: 'Dark Brown', code: '#3D2817', isAvailable: true },
+      { name: 'Medium Brown', code: '#5C4033', isAvailable: true },
+      { name: 'Light Brown', code: '#8B7355', isAvailable: false }
     ]
   },
   {
@@ -523,6 +593,10 @@ export const sampleProducts = [
       'Loose wave texture',
       'High density',
       'Color-safe products recommended'
+    ],
+    colors: [
+      { name: 'Copper Red', code: '#CD5B45', isAvailable: true },
+      { name: 'Auburn Red', code: '#A0522D', isAvailable: true }
     ]
   },
   {
@@ -560,6 +634,10 @@ export const sampleProducts = [
       'Cool-toned finish',
       'Silky smooth',
       'Fashion-forward color'
+    ],
+    colors: [
+      { name: 'Platinum Blonde', code: '#E8E4D0', isAvailable: true },
+      { name: 'Silver Blonde', code: '#C0C0C0', isAvailable: false }
     ]
   },
   {
@@ -597,6 +675,11 @@ export const sampleProducts = [
       'U-part for blending',
       'Easy installation',
       'Protective styling'
+    ],
+    colors: [
+      { name: 'Natural Black', code: '#1A1A1A', isAvailable: true },
+      { name: 'Dark Brown', code: '#3D2817', isAvailable: true },
+      { name: 'Medium Brown', code: '#5C4033', isAvailable: true }
     ]
   },
   {
@@ -634,6 +717,12 @@ export const sampleProducts = [
       'Fun and flirty',
       'Low maintenance curls',
       'Great volume'
+    ],
+    colors: [
+      { name: 'Natural Black', code: '#1A1A1A', isAvailable: true },
+      { name: 'Dark Brown', code: '#3D2817', isAvailable: true },
+      { name: 'Chestnut Brown', code: '#8B5A2B', isAvailable: true },
+      { name: 'Auburn', code: '#A0522D', isAvailable: true }
     ]
   },
   {
@@ -671,6 +760,10 @@ export const sampleProducts = [
       'Dark root for natural look',
       'Dimensional color',
       'Body wave texture'
+    ],
+    colors: [
+      { name: 'Ash Blonde Balayage', code: '#B8A68C', isAvailable: true },
+      { name: 'Beige Blonde Balayage', code: '#D4C9B0', isAvailable: true }
     ]
   },
   {
@@ -708,6 +801,11 @@ export const sampleProducts = [
       'Maximum volume',
       'Defined curl pattern',
       'Long-lasting curls'
+    ],
+    colors: [
+      { name: 'Natural Black', code: '#1A1A1A', isAvailable: true },
+      { name: 'Dark Brown', code: '#3D2817', isAvailable: true },
+      { name: 'Medium Brown', code: '#5C4033', isAvailable: false }
     ]
   },
   {
@@ -745,6 +843,10 @@ export const sampleProducts = [
       'Silky smooth',
       'Pre-colored professionally',
       'Fade-resistant dye'
+    ],
+    colors: [
+      { name: 'Rose Gold Pink', code: '#E0B0B0', isAvailable: true },
+      { name: 'Pastel Pink', code: '#F4C2C2', isAvailable: false }
     ]
   }
 ];

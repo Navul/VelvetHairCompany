@@ -134,6 +134,24 @@ const Cart = () => {
                             <h3 className="font-semibold text-gray-900 mb-1">
                               {item.name}
                             </h3>
+                            
+                            {/* Display Color if available */}
+                            {item.color && (
+                              <div className="flex items-center gap-2 mb-2">
+                                <span className="text-sm text-gray-600">Color:</span>
+                                <div className="flex items-center gap-1.5">
+                                  <div 
+                                    className="w-5 h-5 rounded-full border border-gray-300"
+                                    style={{ backgroundColor: item.color.code }}
+                                    title={item.color.name}
+                                  />
+                                  <span className="text-sm font-medium text-gray-800">
+                                    {item.color.name}
+                                  </span>
+                                </div>
+                              </div>
+                            )}
+                            
                             <p className="text-sm text-gray-600">
                               In Stock: {item.stock}
                             </p>

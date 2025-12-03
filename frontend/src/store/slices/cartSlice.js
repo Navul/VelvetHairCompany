@@ -1,9 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+// Get cart key based on user ID
+const getCartKey = (userId) => {
+  return userId ? `cart_${userId}` : 'cart_guest';
+};
+
 // Get cart from localStorage
-const getCartFromStorage = () => {
+const getCartFromStorage = (userId = null) => {
   try {
-    const cart = localStorage.getItem('cart');
+    const cartKey = getCartKey(userId);
+    const cart = localStorage.getItem(cartKey);
     return cart ? JSON.parse(cart) : [];
   } catch (error) {
     console.error('Error parsing cart from localStorage:', error);
@@ -12,9 +18,10 @@ const getCartFromStorage = () => {
 };
 
 // Save cart to localStorage
-const saveCartToStorage = (cartItems) => {
+const saveCartToStorage = (cartItems, userId = null) => {
   try {
-    localStorage.setItem('cart', JSON.stringify(cartItems));
+    const cartKey = getCartKey(userId);
+    localStorage.setItem(cartKey, JSON.stringify(cartItems));
   } catch (error) {
     console.error('Error saving cart to localStorage:', error);
   }
@@ -45,6 +52,10 @@ const initialState = {
   ...calculateCartTotals(getCartFromStorage()),
   loading: false,
   error: null,
+  userId: null,
+  showLoginModal: false,
+  toastMessage: '',
+  showToast: false,
 };
 
 // Cart slice
@@ -52,10 +63,23 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
+    setUserId: (state, action) => {
+      state.userId = action.payload;
+      // Load cart for this user
+      if (action.payload) {
+        state.cartItems = getCartFromStorage(action.payload);
+        const totals = calculateCartTotals(state.cartItems);
+        Object.assign(state, totals);
+      }
+    },
+
     addToCart: (state, action) => {
-      const { product, quantity = 1 } = action.payload;
+      const { product, quantity = 1, userId, selectedColor } = action.payload;
+      
+      // Check if item with same product AND color already exists
       const existingItem = state.cartItems.find(
-        (item) => item.product === product._id
+        (item) => item.product === product._id && 
+                  item.color?.name === selectedColor?.name
       );
 
       if (existingItem) {
@@ -72,6 +96,10 @@ const cartSlice = createSlice({
           image: product.images[0]?.url || '/placeholder-image.jpg',
           stock: product.stock,
           quantity: Math.min(quantity, product.stock),
+          color: selectedColor ? { 
+            name: selectedColor.name, 
+            code: selectedColor.code 
+          } : null
         };
         state.cartItems.push(cartItem);
       }
@@ -80,8 +108,13 @@ const cartSlice = createSlice({
       const totals = calculateCartTotals(state.cartItems);
       Object.assign(state, totals);
 
-      // Save to localStorage
-      saveCartToStorage(state.cartItems);
+      // Save to localStorage with user ID
+      saveCartToStorage(state.cartItems, userId || state.userId);
+
+      // Show toast notification
+      state.showToast = true;
+      const colorText = selectedColor ? ` (${selectedColor.name})` : '';
+      state.toastMessage = `${product.name}${colorText} added to cart!`;
     },
 
     removeFromCart: (state, action) => {
@@ -95,22 +128,22 @@ const cartSlice = createSlice({
       Object.assign(state, totals);
 
       // Save to localStorage
-      saveCartToStorage(state.cartItems);
+      saveCartToStorage(state.cartItems, state.userId);
     },
 
     updateCartItemQuantity: (state, action) => {
       const { productId, quantity } = action.payload;
       const item = state.cartItems.find((item) => item.product === productId);
-
+      
       if (item) {
-        item.quantity = Math.min(Math.max(quantity, 1), item.stock);
-
+        item.quantity = Math.min(Math.max(1, quantity), item.stock);
+        
         // Recalculate totals
         const totals = calculateCartTotals(state.cartItems);
         Object.assign(state, totals);
 
         // Save to localStorage
-        saveCartToStorage(state.cartItems);
+        saveCartToStorage(state.cartItems, state.userId);
       }
     },
 
@@ -122,13 +155,27 @@ const cartSlice = createSlice({
       state.totalPrice = 0;
 
       // Clear localStorage
-      localStorage.removeItem('cart');
+      const cartKey = getCartKey(state.userId);
+      localStorage.removeItem(cartKey);
     },
 
     getCartItems: (state) => {
       // This action is used to trigger recalculation when app loads
       const totals = calculateCartTotals(state.cartItems);
       Object.assign(state, totals);
+    },
+
+    showLoginModal: (state) => {
+      state.showLoginModal = true;
+    },
+
+    hideLoginModal: (state) => {
+      state.showLoginModal = false;
+    },
+
+    hideToast: (state) => {
+      state.showToast = false;
+      state.toastMessage = '';
     },
 
     setLoading: (state, action) => {
@@ -146,11 +193,15 @@ const cartSlice = createSlice({
 });
 
 export const {
+  setUserId,
   addToCart,
   removeFromCart,
   updateCartItemQuantity,
   clearCart,
   getCartItems,
+  showLoginModal,
+  hideLoginModal,
+  hideToast,
   setLoading,
   setError,
   clearError,

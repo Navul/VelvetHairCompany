@@ -264,6 +264,14 @@
   color: var(--color-gray-500);
 }
 
+/* ========== COLOR SELECTION ========== */
+
+.product-card__colors {
+  padding: var(--space-2) 0;
+  border-top: 1px solid var(--color-gray-100);
+  margin-top: var(--space-1);
+}
+
 /* ========== PRICE ========== */
 
 .product-card__price-wrapper {
